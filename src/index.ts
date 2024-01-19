@@ -25,12 +25,13 @@ import { generateVueSidebar } from './lib/vue-sidebar';
  */
 const createVuepressSidebar = (options) =>
   fs.writeFile(
-    `${options.docsFolder}/config.js`,
-    `exports.fileTree=${JSON.stringify(
+    `${options.docsFolder}/config${options.typescript ? '.ts' : '.js'}`,
+    `${options.typescript ? 'export const ' : 'exports.'}fileTree=${JSON.stringify(
       options.fileTree
-    )};exports.sidebarTree = (title = 'Mainpage') => (${JSON.stringify(generateVueSidebar(options)).replace(
-      '::vuepress-jsdoc-title::',
-      '"+title+"'
+    )};${options.typescript ? 'export const ' : 'exports.'}.sidebarTree = (title = 'Mainpage') => (${
+      JSON.stringify(generateVueSidebar(options)).replace(
+        '::vuepress-jsdoc-title::',
+        '"+title+"'
     )});`
   );
 
@@ -92,6 +93,7 @@ const parseArguments = (argv: CLIArguments) => {
     srcFolder: argv.source.replace('./', ''),
     codeFolder: argv.folder,
     docsFolder: `${argv.dist}/${argv.folder}`,
+    typescript: argv.typescript,
     title: argv.title,
     readme: argv.readme,
     rmPattern: argv.rmPattern || [],
@@ -142,7 +144,7 @@ export const generate = async (argv: CLIArguments) => {
     );
   }
 
-  // wait unitl all files resolved
+  // wait until all files resolved
   let result = await Promise.all(parsePromises);
   result = result.filter(Boolean);
 
