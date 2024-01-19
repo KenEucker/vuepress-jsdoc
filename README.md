@@ -45,6 +45,7 @@ Use these options after `vuepress-jsdoc`.
 | --title           | -t    | API             | Title of your documentation                                                                                                                     |
 | --help            | -h    |                 | Show help                                                                                                                                       |
 | --version         | -v    |                 | Show current version                                                                                                                            |
+| --typescript      | -ts   |                 | Make output TypeScript friently                                                                                                                 |
 | --readme          | -r    |                 | Path to custom readme file                                                                                                                      |
 | --exclude         | -e    |                 | Pattern to exclude files/folders (Comma seperated) - \*.test.js,exclude.js [more information](https://github.com/micromatch/micromatch#ismatch) |
 | --include         | -e    |                 | Pattern to include files/folders (Comma seperated) - \*.test.js,exclude.js [more information](https://github.com/micromatch/micromatch#ismatch) |

@@ -17,6 +17,7 @@ export interface CLIArguments {
   dist: string;
   title: string;
   readme: string;
+  typescript: boolean;
   watch: boolean;
 }
 
